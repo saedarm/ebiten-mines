@@ -55,11 +55,11 @@ func FromJSON(spriteMap sprites.SpriteMap, layerJSON LayerJSON, parameters map[s
 	for _, clipJSON := range layerJSON.Clips {
 		sprite, ok := spriteMap[clipJSON.Sprite]
 		if !ok {
-			return nil, fmt.Errorf("Could not find sprite '%s' for clip with name '%s'", clipJSON.Sprite, clipJSON.Name)
+			return nil, fmt.Errorf("could not find sprite '%s' for clip with name '%s'", clipJSON.Sprite, clipJSON.Name)
 		}
 		repeat, err := eval(clipJSON.Repeat, parameters)
 		if err != nil {
-			return nil, fmt.Errorf("Repeat in '%s': %v", clipJSON.Repeat, err)
+			return nil, fmt.Errorf("repeat in '%s': %v", clipJSON.Repeat, err)
 		}
 		if repeat == 0 {
 			repeat = 1
@@ -68,19 +68,19 @@ func FromJSON(spriteMap sprites.SpriteMap, layerJSON LayerJSON, parameters map[s
 			parameters["i"] = i
 			x, err := eval(clipJSON.X, parameters)
 			if err != nil {
-				return nil, fmt.Errorf("X in '%s': %v", clipJSON.X, err)
+				return nil, fmt.Errorf("x in '%s': %v", clipJSON.X, err)
 			}
 			y, err := eval(clipJSON.Y, parameters)
 			if err != nil {
-				return nil, fmt.Errorf("Y in '%s': %v", clipJSON.Y, err)
+				return nil, fmt.Errorf("y in '%s': %v", clipJSON.Y, err)
 			}
 			width, err := eval(clipJSON.Width, parameters)
 			if err != nil {
-				return nil, fmt.Errorf("Width in '%s': %v", clipJSON.Width, err)
+				return nil, fmt.Errorf("width in '%s': %v", clipJSON.Width, err)
 			}
 			height, err := eval(clipJSON.Height, parameters)
 			if err != nil {
-				return nil, fmt.Errorf("Height in '%s': %v", clipJSON.Height, err)
+				return nil, fmt.Errorf("height in '%s': %v", clipJSON.Height, err)
 			}
 			if width == 0 {
 				layer.Add(clips.New(sprite, clipJSON.Name, x, y))
